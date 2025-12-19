@@ -15,20 +15,64 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone', models.CharField(max_length=20, verbose_name='Телефон')),
-                ('car_model', models.CharField(blank=True, max_length=100, verbose_name='Марка автомобиля')),
-                ('car_number', models.CharField(blank=True, max_length=20, verbose_name='Госномер')),
-                ('discount', models.PositiveIntegerField(choices=[(0, 'Без скидки'), (5, '5%'), (10, '10%'), (15, '15%'), (20, '20%')], default=0, verbose_name='Скидка (%)')),
-                ('notes', models.TextField(blank=True, verbose_name='Заметки')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='customer_profile', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("phone", models.CharField(max_length=20, verbose_name="Телефон")),
+                (
+                    "car_model",
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Марка автомобиля"
+                    ),
+                ),
+                (
+                    "car_number",
+                    models.CharField(
+                        blank=True, max_length=20, verbose_name="Госномер"
+                    ),
+                ),
+                (
+                    "discount",
+                    models.PositiveIntegerField(
+                        choices=[
+                            (0, "Без скидки"),
+                            (5, "5%"),
+                            (10, "10%"),
+                            (15, "15%"),
+                            (20, "20%"),
+                        ],
+                        default=0,
+                        verbose_name="Скидка (%)",
+                    ),
+                ),
+                ("notes", models.TextField(blank=True, verbose_name="Заметки")),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата регистрации"
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="customer_profile",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Пользователь",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'клиент',
-                'verbose_name_plural': 'Клиенты',
+                "verbose_name": "клиент",
+                "verbose_name_plural": "Клиенты",
             },
         ),
     ]

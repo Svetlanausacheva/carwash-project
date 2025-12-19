@@ -6,11 +6,12 @@ from django.urls import reverse_lazy
 from .models import Customer
 from .forms import CustomerUpdateForm
 
+
 class CustomerProfileView(LoginRequiredMixin, DetailView):
     model = Customer
-    template_name = 'customers/profile.html'
-    context_object_name = 'customer_profile'
-    
+    template_name = "customers/profile.html"
+    context_object_name = "customer_profile"
+
     def get_object(self):
         return get_object_or_404(Customer, user=self.request.user)
 
@@ -18,10 +19,10 @@ class CustomerProfileView(LoginRequiredMixin, DetailView):
 class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     model = Customer
     form_class = CustomerUpdateForm
-    template_name = 'customers/profile_edit.html'
-    
+    template_name = "customers/profile_edit.html"
+
     def get_object(self):
         return get_object_or_404(Customer, user=self.request.user)
-    
+
     def get_success_url(self):
-        return reverse_lazy('customers:profile', kwargs={'pk': self.object.pk})
+        return reverse_lazy("customers:profile", kwargs={"pk": self.object.pk})

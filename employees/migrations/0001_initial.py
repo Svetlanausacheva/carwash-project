@@ -15,30 +15,68 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Position',
+            name="Position",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Название должности')),
-                ('description', models.TextField(blank=True, verbose_name='Описание')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=100, verbose_name="Название должности"),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="Описание")),
             ],
             options={
-                'verbose_name': 'должность',
-                'verbose_name_plural': 'Должности',
+                "verbose_name": "должность",
+                "verbose_name_plural": "Должности",
             },
         ),
         migrations.CreateModel(
-            name='Employee',
+            name="Employee",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('phone', models.CharField(max_length=20, verbose_name='Телефон')),
-                ('hire_date', models.DateField(verbose_name='Дата приема на работу')),
-                ('is_active', models.BooleanField(default=True, verbose_name='Активен')),
-                ('position', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='employees.position', verbose_name='Должность')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='employee_profile', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("phone", models.CharField(max_length=20, verbose_name="Телефон")),
+                ("hire_date", models.DateField(verbose_name="Дата приема на работу")),
+                (
+                    "is_active",
+                    models.BooleanField(default=True, verbose_name="Активен"),
+                ),
+                (
+                    "position",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="employees.position",
+                        verbose_name="Должность",
+                    ),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="employee_profile",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Пользователь",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'сотрудник',
-                'verbose_name_plural': 'Сотрудники',
+                "verbose_name": "сотрудник",
+                "verbose_name_plural": "Сотрудники",
             },
         ),
     ]

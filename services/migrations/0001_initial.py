@@ -8,39 +8,85 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ServiceCategory',
+            name="ServiceCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name='Название категории')),
-                ('description', models.TextField(blank=True, verbose_name='Описание')),
-                ('order', models.PositiveIntegerField(default=0, verbose_name='Порядок')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=200, verbose_name="Название категории"),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="Описание")),
+                (
+                    "order",
+                    models.PositiveIntegerField(default=0, verbose_name="Порядок"),
+                ),
             ],
             options={
-                'verbose_name': 'категория услуг',
-                'verbose_name_plural': 'Категории услуг',
-                'ordering': ['order'],
+                "verbose_name": "категория услуг",
+                "verbose_name_plural": "Категории услуг",
+                "ordering": ["order"],
             },
         ),
         migrations.CreateModel(
-            name='Service',
+            name="Service",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name='Название услуги')),
-                ('description', models.TextField(blank=True, verbose_name='Описание')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Цена')),
-                ('duration', models.PositiveIntegerField(help_text='Продолжительность в минутах', verbose_name='Длительность (мин)')),
-                ('is_active', models.BooleanField(default=True, verbose_name='Активна')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='services', to='services.servicecategory', verbose_name='Категория')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=200, verbose_name="Название услуги"),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="Описание")),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=8, verbose_name="Цена"
+                    ),
+                ),
+                (
+                    "duration",
+                    models.PositiveIntegerField(
+                        help_text="Продолжительность в минутах",
+                        verbose_name="Длительность (мин)",
+                    ),
+                ),
+                (
+                    "is_active",
+                    models.BooleanField(default=True, verbose_name="Активна"),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="services",
+                        to="services.servicecategory",
+                        verbose_name="Категория",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'услуга',
-                'verbose_name_plural': 'Услуги',
-                'ordering': ['category__order', 'name'],
+                "verbose_name": "услуга",
+                "verbose_name_plural": "Услуги",
+                "ordering": ["category__order", "name"],
             },
         ),
     ]
